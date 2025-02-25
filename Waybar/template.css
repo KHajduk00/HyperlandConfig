@@ -1,0 +1,169 @@
+/* Colors from wallpaper */
+@define-color blue_dark    #041222;
+@define-color blue_deep    #06192F;
+@define-color blue_medium  #0F3B5E;
+@define-color blue_main    #154E72;
+@define-color blue_light   #174463;
+@define-color brown        #B97D64;
+@define-color burgundy     #5D4040;
+@define-color gray_brown   #6C5C5C;
+@define-color purple_dark  #352C39;
+
+@define-color background   @blue_dark;
+@define-color background_alt @blue_deep;
+@define-color text         #FFFFFF;
+@define-color text_alt     #CCCCCC;
+@define-color accent       @brown;
+@define-color highlight    @blue_light;
+@define-color warning      @gray_brown;
+@define-color critical     @burgundy;
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    text-shadow: none;
+    icon-shadow: none;
+    font-family: "D2Coding";
+    font-size: 11px;
+}
+
+/* The whole bar */
+#waybar {
+    background: alpha(@background, 0.9);
+    color: @text;
+    padding: 0px;
+}
+
+/* For icons */
+.icon {
+    font-family: "Material Design Icons", "Font Awesome 6 Free", "Noto Color Emoji";
+    font-size: 11px;
+    padding-right: 3px;
+}
+
+/* Generic module styles */
+.modules-left,
+.modules-center,
+.modules-right {
+    margin: 2px 5px;
+}
+
+#workspaces,
+#mode,
+#window,
+#pulseaudio,
+#network,
+#memory,
+#cpu,
+#temperature,
+#battery,
+#tray,
+#idle_inhibitor {
+    background-color: @background_alt;
+    padding: 0 12px;
+    margin: 3px 2px;
+    border-radius: 0;
+}
+
+/* Workspaces */
+#workspaces button {
+    padding: 0 6px;
+    margin: 0 2px;
+    background-color: transparent;
+    color: @text_alt;
+    transition: all 0.3s ease;
+}
+
+#workspaces button.active {
+    background-color: @highlight;
+    color: @text;
+}
+
+#workspaces button.urgent {
+    background-color: @critical;
+    color: @text;
+}
+
+#workspaces button:hover {
+    background: @blue_medium;
+    border-radius: 0;
+}
+
+/* Special module styles */
+#battery {
+    background-color: @blue_medium;
+}
+
+#battery.charging {
+    background-color: @blue_light;
+}
+
+#battery.warning:not(.charging) {
+    background-color: @warning;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @critical;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#clock.time, #clock.date {
+    background-color: @accent;
+    color: @blue_dark;
+    font-weight: bold;
+    padding: 0 8px;
+    margin: 3px 2px;
+}
+
+#pulseaudio {
+    background-color: @blue_light;
+}
+
+#network {
+    background-color: @blue_medium;
+}
+
+#network.disconnected {
+    background-color: @warning;
+}
+
+#cpu {
+    background-color: @purple_dark;
+}
+
+#memory {
+    background-color: @gray_brown;
+}
+
+#temperature {
+    background-color: @burgundy;
+}
+
+#temperature.critical {
+    background-color: @critical;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#tray {
+    background-color: @blue_deep;
+}
+
+@keyframes blink {
+    to {
+        background-color: @text;
+        color: @background;
+    }
+}
